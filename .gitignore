@@ -1,0 +1,6 @@
+/target/
+/sshe.log
+.settings/
+/.idea
+/logs
+/.externalToolBuilders
