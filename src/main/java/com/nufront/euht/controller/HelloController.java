@@ -2,14 +2,20 @@ package com.nufront.euht.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nufront.euht.service.api.TestServiceI;
+
 @Controller
 public class HelloController {
 
+	@Autowired
+	TestServiceI service;
+	
 	@RequestMapping("/test")
 	public ModelAndView test() {
 		String str = "Spring MVC示例";
@@ -37,6 +43,19 @@ public class HelloController {
 		System.out.println("name :" + name);
 		System.out.println("password :" + password);
 		String str = "Spring MVC传参";
+		request.setAttribute("str", str);
+		return "home";
+	}
+	
+	@RequestMapping("/param2")
+	public String param2(HttpServletRequest request, String name,
+			@RequestParam("pass")String password) {
+		String str = null;
+		if (service.login(name, password)) {
+			str = "登录成功";
+		} else {
+			str = "用户名或密码不正确";
+		}
 		request.setAttribute("str", str);
 		return "home";
 	}

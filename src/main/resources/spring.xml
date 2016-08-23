@@ -12,6 +12,6 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd
 	<!-- <context:property-placeholder location="classpath:config.properties" /> -->
 
 	<!-- 自动扫描service包(自动注入) websocket -->
-	<!-- <context:component-scan base-package="com.nufront.euht.service" /> -->
+	<context:component-scan base-package="com.nufront.euht.service" />
 
 </beans>
