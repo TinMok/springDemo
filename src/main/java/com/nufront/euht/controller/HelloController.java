@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nufront.euht.service.api.Test2ServiceI;
 import com.nufront.euht.service.api.TestServiceI;
 
 @Controller
@@ -15,6 +16,9 @@ public class HelloController {
 
 	@Autowired
 	TestServiceI service;
+	
+	@Autowired
+	Test2ServiceI service2;
 	
 	@RequestMapping("/test")
 	public ModelAndView test() {
@@ -47,8 +51,8 @@ public class HelloController {
 		return "home";
 	}
 	
-	@RequestMapping("/param2")
-	public String param2(HttpServletRequest request, String name,
+	@RequestMapping("/service")
+	public String service(HttpServletRequest request, String name,
 			@RequestParam("pass")String password) {
 		String str = null;
 		if (service.login(name, password)) {
@@ -56,6 +60,14 @@ public class HelloController {
 		} else {
 			str = "用户名或密码不正确";
 		}
+		request.setAttribute("str", str);
+		return "home";
+	}
+	
+	@RequestMapping("/service2")
+		public String service2(HttpServletRequest request, String name,
+			@RequestParam("pass")String password) {
+		String str = service2.login(name, password);
 		request.setAttribute("str", str);
 		return "home";
 	}
