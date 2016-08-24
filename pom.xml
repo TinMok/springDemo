@@ -122,6 +122,36 @@
 		<scope>provided</scope>
 	</dependency>
 	
+	<!-- mysql数据库驱动 -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.38</version>
+	</dependency>
+	<!--mybatis -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.3.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.2.3</version>
+	</dependency>
+	<!-- druid数据库连接池-->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.0.18</version>  <!-- 旧版本1.0.16 新版本1.0.18 -->
+	</dependency>
+	<!-- aspectjweaver Spring AOP所要用到的包 -->
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.8.8</version>
+	</dependency>
+	
   </dependencies>
   <build>
     <plugins>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nufront.euht.service.api.AccountServiceI;
 import com.nufront.euht.service.api.Test2ServiceI;
 import com.nufront.euht.service.api.TestServiceI;
 
@@ -19,6 +20,9 @@ public class HelloController {
 	
 	@Autowired
 	Test2ServiceI service2;
+	
+	@Autowired
+	AccountServiceI accountService;
 	
 	@RequestMapping("/test")
 	public ModelAndView test() {
@@ -68,6 +72,19 @@ public class HelloController {
 		public String service2(HttpServletRequest request, String name,
 			@RequestParam("pass")String password) {
 		String str = service2.login(name, password);
+		request.setAttribute("str", str);
+		return "home";
+	}
+	
+	@RequestMapping("/mybatis")
+	public String mybatis(HttpServletRequest request, String name,
+			@RequestParam("pass")String password) {
+		String str = null;
+		if (accountService.login(name, password)) {
+			str = "登录成功";
+		} else {
+			str = "用户名或密码不正确";
+		}
 		request.setAttribute("str", str);
 		return "home";
 	}
