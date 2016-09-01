@@ -15,8 +15,8 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd
 	<context:component-scan base-package="com.nufront.euht.service" />
 
 	<bean name="test2Service" class="com.nufront.euht.service.impl.Test2Service">
-		<property name="success" value="成功！" />
-		<property name="fail" value="失败！" />
+		<property name="success" value="sping注入示例：成功！" />
+		<property name="fail" value="sping注入示例：失败！" />
 	</bean>
 
 </beans>
