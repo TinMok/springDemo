@@ -1,21 +1,16 @@
 package com.nufront.euht.dao;
 
-import java.util.List;
-
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.nufront.euht.model.Account;
 
-public interface AccountMapper {
-    int deleteByPrimaryKey(Integer accountId);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author Mo Xiyong
+ * @since 2018-03-12
+ */
+public interface AccountMapper extends BaseMapper<Account> {
 
-    int insert(Account record);
-
-    int insertSelective(Account record);
-
-    Account selectByPrimaryKey(Integer accountId);
-
-    int updateByPrimaryKeySelective(Account record);
-
-    int updateByPrimaryKey(Account record);
-    
-    List<Account> getAll();
 }

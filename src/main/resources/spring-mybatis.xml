@@ -51,10 +51,36 @@ http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		<property name="filters" value="mergeStat" />
 	</bean>
 	<!-- myBatis文件 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-		<property name="mapperLocations" value="classpath:com/nufront/euht/mapping/*.xml"></property>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+		
+		<property name="typeAliasesPackage" value="com.nufront.euht.model"/>
+		<!-- <property name="configuration" ref="mybatisConfig"/> -->
+		<!-- MP 全局配置注入 -->
+		<property name="globalConfig" ref="globalConfig"/>
+		<property name="plugins">
+			<array>
+				<!-- 分页插件 -->
+				<bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
+					<property name="dialectType" value="mysql" />
+				</bean>
+				<!-- 乐观锁插件 -->
+				<bean id="optimisticLockerInterceptor"
+					class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor">
+				</bean>
+			</array>
+    	</property>
+	</bean>
+	
+	<!-- 定义 MP 全局策略 -->
+	<bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+	    <!-- 全局ID类型： 0, "数据库ID自增"， 1, "用户输入ID", 2, "ID_WORKER", 3, "UUID"-->
+	    <property name="idType" value="2"/>
+	    <!-- 2.1-gamma+ 数据库自动识别，无需配置数据库类型
+	    <property name="dbType" value="mysql" />
+	    -->
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

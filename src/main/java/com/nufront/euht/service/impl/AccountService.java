@@ -17,7 +17,7 @@ public class AccountService implements AccountServiceI {
 	
 	@Override
 	public boolean login(String user, String password) {
-		List<Account> accounts = mapper.getAll();
+		List<Account> accounts = mapper.selectList(null);
 		for (Account account : accounts) {
 			if(account.getUser().equals(user) && account.getPassword().equals(password)) {
 				return true;
